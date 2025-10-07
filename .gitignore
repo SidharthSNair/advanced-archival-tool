@@ -1,0 +1,134 @@
+# ======================================
+# 🌐 GLOBAL / OS FILES
+# ======================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ======================================
+# 🧠 PYTHON / BACKEND / WORKERS
+# ======================================
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pyproj
+*.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage.xml
+htmlcov/
+.coverage
+*.coverage
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / logs / runtime data
+logs/
+*.log
+*.bak
+*.tmp
+*.swp
+
+# SQLite / local data files
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+data/*.bak
+
+# Archive output (produced by scheduler)
+archive_output/
+archives/
+
+# Crawler / test sample folder
+sample_share/
+
+# ======================================
+# ⚙️ ENVIRONMENT FILES
+# ======================================
+.env
+.env.local
+.env.prod
+.env.docker
+*.env
+!.env.template     # keep the template committed
+
+# ======================================
+# 🧱 ALEMBIC / MIGRATIONS
+# ======================================
+# Alembic migration cache or compiled files
+backend/alembic/__pycache__/
+backend/alembic/versions/__pycache__/
+
+# ======================================
+# 💻 FRONTEND (React + Vite)
+# ======================================
+node_modules/
+frontend/node_modules/
+frontend/.vite/
+frontend/dist/
+frontend/build/
+frontend/.eslintcache
+
+# Local env for frontend
+frontend/.env
+frontend/.env.local
+frontend/.env.development
+frontend/.env.production
+
+# Log files
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# ======================================
+# 🐳 DOCKER / COMPOSE
+# ======================================
+# Docker volumes and build cache
+**/.dockerignore
+docker-compose.override.yml
+docker-compose.dev.yml
+.docker/
+*.pid
+
+# ======================================
+# 🧩 IDEs & EDITORS
+# ======================================
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ======================================
+# 🧮 SYSTEM / MISC
+# ======================================
+# MacOS & Windows metadata
+Icon?
+ehthumbs.db
+
+# Backup / temporary files
+*.tmp
+*.temp
+*.orig
+*.old
+*.bak
+*.rej
+
+# ======================================
+# ✅ ALLOW TEMPLATES / CONFIGS TO STAY
+# ======================================
+!.editorconfig
+!.env.template
+!.gitignore
