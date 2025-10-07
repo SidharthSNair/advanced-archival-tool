@@ -5,6 +5,13 @@ from fastapi.responses import ORJSONResponse
 from app.core.config import app_info
 from app.core.logging import configure_logging
 from app.api.routes.health import router as health_router
+from app.api.routes.regions import router as regions_router
+from app.api.routes.nodes import router as nodes_router
+from app.api.routes.archive import router as archive_router
+
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -21,8 +28,28 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Routers
 app.include_router(health_router)
+app.include_router(regions_router)
+app.include_router(nodes_router)
+app.include_router(archive_router)
+
+for route in app.routes:
+    print("🛣️", route.path)
+
 
 # Convenience root
 @app.get("/")
