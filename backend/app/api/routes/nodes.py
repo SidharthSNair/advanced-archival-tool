@@ -21,4 +21,5 @@ def list_nodes(share_id: int, parent_id: int | None = None, db: Session = Depend
         q = q.filter(Node.parent_id.is_(None))
     else:
         q = q.filter(Node.parent_id == parent_id)
+
     return q.all()
