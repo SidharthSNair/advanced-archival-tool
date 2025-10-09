@@ -165,9 +165,10 @@ export default function FileTree({ share, regionCode, locationCode }) {
   }
 
   // Handle selection
-  const handleCheck = (checkedKeys, { checkedNodes }) => {
-    setCheckedNodes(checkedNodes);
-  };
+   const handleCheck = (checkedKeys, { checkedNodes }) => {
+     setCheckedNodes(checkedNodes);
+   };
+
 
   // ✅ Updated handleSchedule
   const handleSchedule = async () => {
@@ -179,7 +180,8 @@ export default function FileTree({ share, regionCode, locationCode }) {
     // ✅ Build full UNC paths for backend
     const paths = checkedNodes.map((n) => {
       const relative = n.path?.replace(/\//g, "\\") || n.title;
-      return `${share.unc_path}\\${relative}`;
+      // return `${share.unc_path}\\${relative}`;
+      return relative;
     });
 
     try {
