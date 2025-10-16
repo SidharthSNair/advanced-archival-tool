@@ -5,6 +5,7 @@ from pathlib import Path
 from app.db.session import SessionLocal
 from app.models import Node, Share
 
+
 def crawl_share(share_id: int, root_path: str):
     """
     Crawl the given directory path and insert nodes into DB under share_id.
@@ -69,6 +70,7 @@ def crawl_share(share_id: int, root_path: str):
         raise
     finally:
         db.close()
+
 
 if __name__ == "__main__":
     # Example: crawl share id=1, path=./sample_share for dev

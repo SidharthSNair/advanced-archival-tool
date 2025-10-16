@@ -4,10 +4,13 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+Icon?
+ehthumbs.db
 
 # ======================================
 # 🧠 PYTHON / BACKEND / WORKERS
 # ======================================
+
 # Virtual environments
 .venv/
 venv/
@@ -35,25 +38,42 @@ dist/
 *.egg-info/
 .eggs/
 
-# Test / logs / runtime data
+# Logs / temp files
 logs/
 *.log
 *.bak
 *.tmp
 *.swp
+*.swo
+*.orig
 
 # SQLite / local data files
 data/*.db
 data/*.sqlite
 data/*.sqlite3
 data/*.bak
+backend/app/*.db
 
-# Archive output (produced by scheduler)
+# Archive outputs (produced by scheduler)
 archive_output/
 archives/
+archive_logs/
 
 # Crawler / test sample folder
+crawler_output/
+index_cache/
 sample_share/
+
+# Reports or scan exports
+reports/
+output/
+tmp/
+WholeStatus.txt
+
+# Migration / Robocopy / custom sync logs
+robocopy_logs/
+migration_logs/
+node_modules/
 
 # ======================================
 # ⚙️ ENVIRONMENT FILES
@@ -61,21 +81,22 @@ sample_share/
 .env
 .env.local
 .env.prod
+.env.dev
 .env.docker
 *.env
-!.env.template     # keep the template committed
+!.env.template          # keep committed template
 
 # ======================================
 # 🧱 ALEMBIC / MIGRATIONS
 # ======================================
-# Alembic migration cache or compiled files
 backend/alembic/__pycache__/
 backend/alembic/versions/__pycache__/
+backend/alembic/versions/*.pyc
+backend/alembic/versions/*.pyo
 
 # ======================================
 # 💻 FRONTEND (React + Vite)
 # ======================================
-node_modules/
 frontend/node_modules/
 frontend/.vite/
 frontend/dist/
@@ -96,12 +117,17 @@ frontend/yarn-error.log*
 # ======================================
 # 🐳 DOCKER / COMPOSE
 # ======================================
-# Docker volumes and build cache
+.docker/
 **/.dockerignore
 docker-compose.override.yml
 docker-compose.dev.yml
-.docker/
 *.pid
+
+# Docker build cache
+**/__pycache__/
+**/.pytest_cache/
+**/.mypy_cache/
+lambda_package/
 
 # ======================================
 # 🧩 IDEs & EDITORS
@@ -112,23 +138,31 @@ docker-compose.dev.yml
 *.sublime-workspace
 
 # ======================================
-# 🧮 SYSTEM / MISC
+# ⚙️ SYSTEM / MISC / BACKUPS
 # ======================================
-# MacOS & Windows metadata
-Icon?
-ehthumbs.db
-
-# Backup / temporary files
-*.tmp
 *.temp
-*.orig
+*.tmp
 *.old
 *.bak
 *.rej
+*.save
+*.backup
 
 # ======================================
-# ✅ ALLOW TEMPLATES / CONFIGS TO STAY
+# 🪟 WINDOWS / POWERSHELL
+# ======================================
+*.ps1
+*.bat
+!deploy_example.ps1    # keep example scripts
+
+# ======================================
+# ✅ ALLOW IMPORTANT CONFIGS
 # ======================================
 !.editorconfig
 !.env.template
 !.gitignore
+!README.md
+!requirements.txt
+!package.json
+!vite.config.js
+!alembic.ini

@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     ENV: str = "dev"
     LOG_LEVEL: str = "INFO"
 
+    ARCHIVE_MODE: str = "copy"   # copy|move|delete
+    ARCHIVE_DRY_RUN: bool = False
+    ARCHIVE_OUTPUT_DIR: str = "./archive_output"
+
     # --- Project paths ---
     PROJECT_ROOT: Path = Path(__file__).resolve().parents[3]
     DATA_DIR: Path = PROJECT_ROOT / "data"

@@ -1,8 +1,9 @@
-from sqlalchemy import String, Integer, ForeignKey, DateTime, Boolean, JSON
+from sqlalchemy import String, Integer, ForeignKey, DateTime, Boolean, JSON, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 
 from app.db.base import Base
+
 
 # --- Region (e.g., NA, Asia, Europe)
 class Region(Base):
@@ -12,6 +13,7 @@ class Region(Base):
     name: Mapped[str] = mapped_column(String(64), unique=True, nullable=False)
 
     locations: Mapped[list["Location"]] = relationship(back_populates="region")
+
 
 # --- Location (e.g., Halifax, Tokyo, Frankfurt)
 class Location(Base):
@@ -26,6 +28,7 @@ class Location(Base):
 
     shares: Mapped[list["Share"]] = relationship(back_populates="location")
 
+
 # --- Share (file share UNC path or mount)
 class Share(Base):
     __tablename__ = "shares"
@@ -37,6 +40,7 @@ class Share(Base):
     location: Mapped["Location"] = relationship(back_populates="shares")
 
     nodes: Mapped[list["Node"]] = relationship(back_populates="share")
+
 
 # --- Node (file or folder in the share)
 class Node(Base):
@@ -55,6 +59,7 @@ class Node(Base):
     parent: Mapped["Node"] = relationship(remote_side=[id])
     share: Mapped["Share"] = relationship(back_populates="nodes")
 
+
 # --- Archive Requests (scheduling deletions/moves)
 class ArchiveRequest(Base):
     __tablename__ = "archive_requests"
@@ -72,3 +77,12 @@ class ArchiveRequest(Base):
     result_message: Mapped[str | None] = mapped_column(String(1024), nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class AuditLog(Base):
+    __tablename__ = "audit_logs"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    action: Mapped[str] = mapped_column(String(64), index=True)
+    user_ip: Mapped[str | None] = mapped_column(String(64))
+    details: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)

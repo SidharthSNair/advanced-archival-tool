@@ -446,6 +446,7 @@ export default function FileTree({ share, regionCode, locationCode, filters }) {
     setTreeData([]);
     setCheckedNodes([]);
     setExpandedKeys([]);
+    
     loadRoot();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [share?.id, filters.q, filters.kind, filters.days]);
